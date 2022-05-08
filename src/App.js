@@ -1,10 +1,13 @@
+import CssBaseline from '@mui/material/CssBaseline';
+
 import WeatherDetailsPage from './containers/WeatherDetailsPage/WeatherDetailsPage';
 
 function App() {
   return (
-    <div className='App'>
+    <>
+      <CssBaseline />
       <WeatherDetailsPage />
-    </div>
+    </>
   );
 }
 
