@@ -3,6 +3,7 @@ import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 
 import SearchBar from '../../components/SearchBar';
+import CurrentWeatherCard from '../../components/CurrentWeatherCard/CurrentWeatherCard';
 
 const WeatherDetailsPage = () => {
   const [weatherForecast, setWeatherForecast] = useState(null);
@@ -14,7 +15,6 @@ const WeatherDetailsPage = () => {
 
   const forecastApi = `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${coordinates.longitude}/lat/${coordinates.latitude}/data.json`;
   const locationApi = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${coordinates.latitude}&longitude=${coordinates.longitude}&localityLanguage=sv`;
-  console.log('address', forecastApi);
   const getWeatherForecast = useCallback(() => {
     fetch(forecastApi)
       .then((response) => {
@@ -23,7 +23,6 @@ const WeatherDetailsPage = () => {
         }
       })
       .then((data) => {
-        console.log(data);
         setWeatherForecast(data);
       });
   }, [forecastApi]);
@@ -36,7 +35,6 @@ const WeatherDetailsPage = () => {
         }
       })
       .then((data) => {
-        console.log(data);
         setLocation();
       });
   }, [locationApi]);
@@ -49,7 +47,6 @@ const WeatherDetailsPage = () => {
   }, []);
 
   const handleInputChange = (val) => {
-    console.log('val', val);
     const { name, value } = val.target;
     setCoordinates((prevState) => ({
       ...prevState,
@@ -96,8 +93,8 @@ const WeatherDetailsPage = () => {
     <Container
       maxWidth='lg'
       display='flex'
-      justifyContent='center'
-      alignItems='center'
+      justify-content='center'
+      align-items='center'
     >
       <Paper elevation={10} style={paperStyle}>
         <SearchBar
@@ -105,6 +102,7 @@ const WeatherDetailsPage = () => {
           coordinates={coordinates}
           onGetWeatherForecast={getWeatherForecast}
         />
+        <CurrentWeatherCard />
       </Paper>
     </Container>
   );
