@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-const SearchBar = ({ coordinates, onInputChange, onGetWeatherForecast }) => {
+const SearchBar = ({ coordinates, onInputChange, onFetchWeather }) => {
   return (
     <Box
       component='form'
@@ -34,11 +34,7 @@ const SearchBar = ({ coordinates, onInputChange, onGetWeatherForecast }) => {
         onChange={onInputChange}
         value={coordinates.latitude}
       />
-      <Button
-        color='secondary'
-        variant='contained'
-        onClick={onGetWeatherForecast}
-      >
+      <Button color='secondary' variant='contained' onClick={onFetchWeather}>
         Hämta väder
       </Button>
     </Box>

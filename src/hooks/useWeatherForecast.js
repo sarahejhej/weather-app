@@ -35,12 +35,12 @@ const getTodaysWeather = (weatherData) => {
   return todaysWeatherData;
 };
 
-export const useWeatherForecast = (type, coordinates) => {
-  console.log('type, coor', type, coordinates);
+export const useWeatherForecast = (type, coordinates, shouldFetch) => {
+  console.log('type, coor', type, coordinates, shouldFetch);
   const forecastApi = `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${coordinates.longitude}/lat/${coordinates.latitude}/data.json`;
   // const locationApi = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${coordinates.latitude}&longitude=${coordinates.longitude}&localityLanguage=sv`;
 
-  const { data, error } = useSWR(forecastApi, (url) => fetcher(url));
+  const { data, error } = useSWR(shouldFetch ? forecastApi : null, fetcher);
 
   console.log('error, data', error, data);
   if (type === 'todaysWeather') {

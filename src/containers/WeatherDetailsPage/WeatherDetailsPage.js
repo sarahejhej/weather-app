@@ -8,18 +8,19 @@ import SearchBar from '../../components/SearchBar';
 import CurrentWeatherCard from '../../components/CurrentWeatherCard/CurrentWeatherCard';
 
 const WeatherDetailsPage = () => {
+  const [shouldFetch, setShouldFetch] = useState(false);
   const [weatherForecast, setWeatherForecast] = useState(null);
   const [coordinates, setCoordinates] = useState({
     latitude: 55.433993,
     longitude: 13.819552,
   });
-  // const [location, setLocation] = useState(null);
 
   const { todaysWeather, isLoading, isError } = useWeatherForecast(
     'todaysWeather',
-    coordinates
+    coordinates,
+    shouldFetch
   );
-  const { location } = useLocation(coordinates);
+  const { location } = useLocation(coordinates, shouldFetch);
 
   console.log(
     'todaysWeather, isLoading, isError, location',
@@ -28,41 +29,13 @@ const WeatherDetailsPage = () => {
     isError,
     location
   );
-  const forecastApi = `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${coordinates.longitude}/lat/${coordinates.latitude}/data.json`;
-  const locationApi = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${coordinates.latitude}&longitude=${coordinates.longitude}&localityLanguage=sv`;
 
-  // const getWeatherForecast = useCallback(() => {
-  //   fetch(forecastApi)
-  //     .then((response) => {
-  //       if (response.ok) {
-  //         return response.json();
-  //       }
-  //     })
-  //     .then((data) => {
-  //       setWeatherForecast(data);
-  //     });
-  // }, [forecastApi]);
-
-  const getLocation = useCallback(() => {
-    fetch(locationApi)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-      })
-      .then((data) => {
-        // setLocation();
-      });
-  }, [locationApi]);
-
-  // useEffect(() => {
-  //   if (coordinates) {
-  //     getWeatherForecast();
-  //     getLocation();
-  //   }
-  // }, []);
+  useEffect(() => {
+    setShouldFetch(true);
+  }, []);
 
   const handleInputChange = (val) => {
+    setShouldFetch(false);
     const { name, value } = val.target;
     setCoordinates((prevState) => ({
       ...prevState,
@@ -88,6 +61,10 @@ const WeatherDetailsPage = () => {
       validTime.includes(currentDate)
     );
   }, []);
+
+  const handleFetchWeather = () => {
+    setShouldFetch(true);
+  };
 
   const weatherForecastPerDay = getWeatherForecastForDay();
   const weatherAtNoon = weatherForecast?.timeSeries.filter(({ validTime }) =>
@@ -123,7 +100,7 @@ const WeatherDetailsPage = () => {
         <SearchBar
           onInputChange={handleInputChange}
           coordinates={coordinates}
-          // onGetWeatherForecast={getWeatherForecast}
+          onFetchWeather={handleFetchWeather}
         />
         <CurrentWeatherCard />
       </Paper>
