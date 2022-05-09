@@ -1,4 +1,5 @@
 import React from 'react';
+import dayjs from 'dayjs';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
@@ -16,7 +17,6 @@ const CurrentWeatherCard = ({ shouldFetch, coordinates }) => {
     coordinates,
     shouldFetch
   );
-
   const { location } = useLocation(coordinates, shouldFetch);
   return (
     <CurrentWeatherContainer>
@@ -34,7 +34,9 @@ const CurrentWeatherCard = ({ shouldFetch, coordinates }) => {
           Stockholm, SE
         </Typography>
         <Typography variant='subtitle1' component='h2'>
-          Tuesday, 4:53 AM, Clear sky
+          {`${dayjs(new Date()).format('dddd, D MMM, HH:mm')}, ${
+            todaysWeather[0].description
+          }`}
         </Typography>
       </Box>
       <Box

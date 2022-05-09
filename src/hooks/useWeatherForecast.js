@@ -1,4 +1,5 @@
 import useSWR from 'swr';
+import dayjs from 'dayjs';
 
 import * as weatherDescriptions from '../weatherDescriptions.json';
 const iconPrefix = `wi wi-`;
@@ -15,19 +16,22 @@ const iconPrefix = `wi wi-`;
 
 const getTodaysWeather = (weatherData) => {
   const currentDate = weatherData?.referenceTime?.substr(0, 10);
-  const todaysWeatherData = weatherData.timeSeries.filter(({ validTime }) =>
+  const todaysWeatherData = weatherData.timeSeries.find(({ validTime }) =>
     validTime.includes(currentDate)
   );
-  return todaysWeatherData;
+
+  return [todaysWeatherData];
 };
 
 const convertResponse = (data) => {
-  const mapped = data.map((weather) => ({
-    temperature: weather.parameters[10].values[0],
-    date: weather.validTime,
+  const mapped = data.map(({ validTime, parameters }) => ({
+    temperature: parameters[10].values[0],
+    date: dayjs(validTime).format(),
     weatherIcon:
       iconPrefix +
-      weatherDescriptions.default['day'][weather.parameters[18].values[0]].icon,
+      weatherDescriptions.default['day'][parameters[18].values[0]].icon,
+    description:
+      weatherDescriptions.default['day'][parameters[18].values[0]].description,
   }));
   return mapped;
 };
