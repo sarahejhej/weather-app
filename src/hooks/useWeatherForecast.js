@@ -24,15 +24,22 @@ const getTodaysWeather = (weatherData) => {
 };
 
 const convertResponse = (data) => {
-  const mapped = data.map(({ validTime, parameters }) => ({
-    temperature: parameters[10].values[0],
-    date: dayjs(validTime).format(),
-    weatherIcon:
-      iconPrefix +
-      weatherDescriptions.default['day'][parameters[18].values[0]].icon,
-    description:
-      weatherDescriptions.default['day'][parameters[18].values[0]].description,
-  }));
+  const mapped = data.map(({ validTime, parameters }) => {
+    const hour = parseInt(dayjs(validTime).format().substring(11, 13));
+    const isDay = hour >= 7 && hour <= 20;
+    return {
+      temperature: parameters[10].values[0],
+      date: dayjs(validTime).format(),
+      weatherIcon:
+        iconPrefix +
+        weatherDescriptions.default[isDay ? 'day' : 'night'][
+          parameters[18].values[0]
+        ].icon,
+      description:
+        weatherDescriptions.default['day'][parameters[18].values[0]]
+          .description,
+    };
+  });
   return mapped;
 };
 
