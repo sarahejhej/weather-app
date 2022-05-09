@@ -2,13 +2,23 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
+import { useLocation } from '../../hooks/useLocation';
+import { useWeatherForecast } from '../../hooks/useWeatherForecast';
 import {
   CurrentWeatherContainer,
   WeatherIcon,
 } from './CurrentWeatherCard.styles';
 import '../../css/weather-icons.min.css';
 
-const CurrentWeatherCard = () => {
+const CurrentWeatherCard = ({ shouldFetch, coordinates }) => {
+  const { todaysWeather, isLoading, isError } = useWeatherForecast(
+    'todaysWeather',
+    coordinates,
+    shouldFetch
+  );
+
+  const { location } = useLocation(coordinates, shouldFetch);
+  console.log(todaysWeather, isError, isLoading, location);
   return (
     <CurrentWeatherContainer>
       <Box

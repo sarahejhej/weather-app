@@ -25,41 +25,24 @@ const fetcher = async (url) => {
 // };
 
 const getTodaysWeather = (weatherData) => {
-  console.log('weatjerdata', weatherData);
   const currentDate = weatherData?.referenceTime?.substr(0, 10);
-  console.log('currentDate', currentDate);
-  const todaysWeatherData = weatherData.timeSeries.find(({ validTime }) =>
+  const todaysWeatherData = weatherData.timeSeries.filter(({ validTime }) =>
     validTime.includes(currentDate)
   );
-  console.log('todaysWeatherData', todaysWeatherData);
   return todaysWeatherData;
 };
 
 export const useWeatherForecast = (type, coordinates, shouldFetch) => {
-  console.log('type, coor', type, coordinates, shouldFetch);
   const forecastApi = `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${coordinates.longitude}/lat/${coordinates.latitude}/data.json`;
-  // const locationApi = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${coordinates.latitude}&longitude=${coordinates.longitude}&localityLanguage=sv`;
 
   const { data, error } = useSWR(shouldFetch ? forecastApi : null, fetcher);
 
   console.log('error, data', error, data);
   if (type === 'todaysWeather') {
-    // const todaysWeather = getTodaysWeather(data);
     return {
       todaysWeather: data?.timeSeries ? getTodaysWeather(data) : null,
       isLoading: !data && !error,
       isError: error,
     };
-  } /* else {
-    return {
-      weatherForecast:
-        data?.list && Object.entries(data).length
-          ? data.list
-              .filter((f) => f.dt_txt.match(/09:00:00/))
-              .map(mapResponseProperties)
-          : null,
-      isLoading: !data && !error,
-      isError: error,
-    };
-  } */
+  }
 };
