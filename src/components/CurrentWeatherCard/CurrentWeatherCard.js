@@ -18,7 +18,6 @@ const CurrentWeatherCard = ({ shouldFetch, coordinates }) => {
   );
 
   const { location } = useLocation(coordinates, shouldFetch);
-  console.log(todaysWeather, isError, isLoading, location);
   return (
     <CurrentWeatherContainer>
       <Box
