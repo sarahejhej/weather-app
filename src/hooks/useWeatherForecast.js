@@ -32,6 +32,7 @@ const convertResponse = (data) => {
       date: dayjs(validTime).format(),
       weatherIcon:
         iconPrefix +
+        (isDay ? 'day-' : 'night-') +
         weatherDescriptions.default[isDay ? 'day' : 'night'][
           parameters[18].values[0]
         ].icon,
@@ -53,8 +54,8 @@ export const useWeatherForecast = (type, coordinates, shouldFetch) => {
       todaysWeather: data?.timeSeries
         ? convertResponse(getTodaysWeather(data))
         : null,
-      isLoading: !data && !error,
-      isError: error,
+      isLoadingWeather: !data && !error,
+      isWeatherError: error,
     };
   }
 };

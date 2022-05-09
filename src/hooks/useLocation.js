@@ -1,5 +1,14 @@
 import useSWR from 'swr';
 
+const convertResponse = (data) => {
+  console.log('data', data);
+  const mapped = {
+    locality: data.locality,
+    countryCode: data.countryCode,
+  };
+  return mapped;
+};
+
 export const useLocation = (coordinates, shouldFetch) => {
   const locationApi = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${coordinates.latitude}&longitude=${coordinates.longitude}&localityLanguage=sv`;
 
@@ -8,8 +17,8 @@ export const useLocation = (coordinates, shouldFetch) => {
   });
 
   return {
-    location: data,
-    isLoading: !data && !error,
-    isError: error,
+    location: data ? convertResponse(data) : null,
+    isLoadingLocation: !data && !error,
+    isLocationError: error,
   };
 };
