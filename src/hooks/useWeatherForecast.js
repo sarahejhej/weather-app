@@ -3,17 +3,6 @@ import useSWR from 'swr';
 import * as weatherDescriptions from '../weatherDescriptions.json';
 const iconPrefix = `wi wi-`;
 
-const fetcher = async (url) => {
-  const res = await fetch(url);
-
-  if (!res.ok) {
-    const error = console.error(res.status);
-    throw error;
-  }
-
-  return res.json();
-};
-
 // const getWeatherForecastForDay = (data) => {
 //   const dates = data?.timeSeries
 //     .map(({ validTime }) => validTime.substr(0, 10))
@@ -46,7 +35,7 @@ const convertResponse = (data) => {
 export const useWeatherForecast = (type, coordinates, shouldFetch) => {
   const forecastApi = `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${coordinates.longitude}/lat/${coordinates.latitude}/data.json`;
 
-  const { data, error } = useSWR(shouldFetch ? forecastApi : null, fetcher);
+  const { data, error } = useSWR(shouldFetch ? forecastApi : null);
 
   if (type === 'todaysWeather') {
     return {
