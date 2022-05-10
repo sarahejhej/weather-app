@@ -9,10 +9,10 @@ const convertResponse = (data) => {
   return mapped;
 };
 
-export const useLocation = (coordinates, shouldFetch) => {
+export const useLocation = (coordinates) => {
   const locationApi = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${coordinates.latitude}&longitude=${coordinates.longitude}&localityLanguage=sv`;
 
-  const { data, error } = useSWR(shouldFetch ? locationApi : null, {
+  const { data, error } = useSWR(locationApi, {
     refreshInterval: 0,
   });
 

@@ -44,10 +44,10 @@ const convertResponse = (data) => {
   return mapped;
 };
 
-export const useWeatherForecast = (type, coordinates, shouldFetch) => {
+export const useWeatherForecast = (type, coordinates) => {
   const forecastApi = `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${coordinates.longitude}/lat/${coordinates.latitude}/data.json`;
 
-  const { data, error } = useSWR(shouldFetch ? forecastApi : null);
+  const { data, error } = useSWR(forecastApi);
 
   if (type === 'todaysWeather') {
     return {

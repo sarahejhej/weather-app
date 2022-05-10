@@ -11,14 +11,10 @@ import {
 } from './CurrentWeatherCard.styles';
 import '../../css/weather-icons.min.css';
 
-const CurrentWeatherCard = ({ shouldFetch, coordinates }) => {
-  const { todaysWeather, isLoadingWeather, isWeatherError } =
-    useWeatherForecast('todaysWeather', coordinates, shouldFetch);
+const CurrentWeatherCard = ({ coordinates }) => {
+  const { todaysWeather } = useWeatherForecast('todaysWeather', coordinates);
 
-  const { location, isLoadingLocation, isLocationError } = useLocation(
-    coordinates,
-    shouldFetch
-  );
+  const { location } = useLocation(coordinates);
 
   return (
     <CurrentWeatherContainer>
