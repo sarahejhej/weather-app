@@ -1,14 +1,21 @@
 import React from 'react';
+import dayjs from 'dayjs';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
+import { useLocation } from '../../hooks/useLocation';
+import { useWeatherForecast } from '../../hooks/useWeatherForecast';
 import {
   CurrentWeatherContainer,
   WeatherIcon,
 } from './CurrentWeatherCard.styles';
 import '../../css/weather-icons.min.css';
 
-const CurrentWeatherCard = () => {
+const CurrentWeatherCard = ({ coordinates }) => {
+  const { todaysWeather } = useWeatherForecast('todaysWeather', coordinates);
+
+  const { location } = useLocation(coordinates);
+
   return (
     <CurrentWeatherContainer>
       <Box
@@ -22,10 +29,13 @@ const CurrentWeatherCard = () => {
         }}
       >
         <Typography variant='h4' component='h1'>
-          Stockholm, SE
+          {location && `${location.locality}, ${location.countryCode}`}
         </Typography>
         <Typography variant='subtitle1' component='h2'>
-          Tuesday, 4:53 AM, Clear sky
+          {todaysWeather &&
+            `${dayjs(new Date()).format('dddd, D MMM, HH:mm')}, ${
+              todaysWeather[0].description
+            }`}
         </Typography>
       </Box>
       <Box
@@ -37,12 +47,17 @@ const CurrentWeatherCard = () => {
           width: '100%',
         }}
       >
-        <Typography variant='h2' component='h2' mt={4}>
-          13&deg;C
-        </Typography>
+        <Box>
+          <Typography variant='h2' component='h2' mt={4}>
+            {todaysWeather && Math.round(todaysWeather[0].temperature)}&deg;C
+          </Typography>
+          <Typography variant='h5' component='h3' pl={1}>
+            {todaysWeather && todaysWeather[0].description}
+          </Typography>
+        </Box>
         <Box mb={3}>
           <WeatherIcon
-            className='wi wi-night-sleet display-1'
+            className={todaysWeather && todaysWeather[0].weatherIcon}
             fontSize='8rem'
           />
         </Box>

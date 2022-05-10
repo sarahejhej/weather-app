@@ -1,0 +1,222 @@
+{
+  "day": {
+    "1": {
+      "description": "Clear sky",
+      "icon": "sunny"
+    },
+    "2": {
+      "description": "Nearly clear sky",
+      "icon": "sunny-overcast"
+    },
+    "3": {
+      "description": "Variable cloudiness",
+      "icon": "unny overcast"
+    },
+    "4": {
+      "description": "Halfclear sky",
+      "icon": "cloudy"
+    },
+    "5": {
+      "description": "Cloudy sky",
+      "icon": "cloudy-gusts"
+    },
+    "6": {
+      "description": "Overcast",
+      "icon": "cloudy-gusts"
+    },
+    "7": {
+      "description": "Fog",
+      "icon": "fog"
+    },
+    "8": {
+      "description": "Light rain showers",
+      "icon": "showers"
+    },
+    "9": {
+      "description": "Moderate rain showers",
+      "icon": "showers"
+    },
+    "10": {
+      "description": "Heavy rain showers",
+      "icon": "rain"
+    },
+    "11": {
+      "description": "Thunderstorm",
+      "icon": "thunderstorm"
+    },
+    "12": {
+      "description": "Light sleet showers",
+      "icon": "sleet"
+    },
+    "13": {
+      "description": "Moderate sleet showers",
+      "icon": "sleet"
+    },
+    "14": {
+      "description": "Heavy sleet showers",
+      "icon": "sleet"
+    },
+    "15": {
+      "description": "Light snow showers",
+      "icon": "snow"
+    },
+    "16": {
+      "description": "Moderate snow showers",
+      "icon": "snow"
+    },
+    "17": {
+      "description": "Heavy snow showers",
+      "icon": "snow"
+    },
+    "18": {
+      "description": "Light rain",
+      "icon": "rain"
+    },
+    "19": {
+      "description": "Moderate rain",
+      "icon": "rain"
+    },
+    "20": {
+      "description": "Heavy rain",
+      "icon": "rain-wind"
+    },
+    "21": {
+      "description": "Thunder",
+      "icon": "thunderstorm"
+    },
+    "22": {
+      "description": "Light sleet",
+      "icon": "sleet"
+    },
+    "23": {
+      "description": "Moderate sleet",
+      "icon": "sleet"
+    },
+    "24": {
+      "description": "Heavy sleet",
+      "icon": "sleet"
+    },
+    "25": {
+      "description": "Light snowfall",
+      "icon": "snow"
+    },
+    "26": {
+      "description": "Moderate snowfall",
+      "icon": "snow"
+    },
+    "27": {
+      "description": "Heavy snowfall",
+      "icon": "snow"
+    }
+  },
+  "night": {
+    "1": {
+      "description": "Clear sky",
+      "icon": "sunny"
+    },
+    "2": {
+      "description": "Nearly clear sky",
+      "icon": "sunny-overcast"
+    },
+    "3": {
+      "description": "Variable cloudiness",
+      "icon": "unny overcast"
+    },
+    "4": {
+      "description": "Halfclear sky",
+      "icon": "cloudy"
+    },
+    "5": {
+      "description": "Cloudy sky",
+      "icon": "cloudy-gusts"
+    },
+    "6": {
+      "description": "Overcast",
+      "icon": "cloudy-gusts"
+    },
+    "7": {
+      "description": "Fog",
+      "icon": "fog"
+    },
+    "8": {
+      "description": "Light rain showers",
+      "icon": "showers"
+    },
+    "9": {
+      "description": "Moderate rain showers",
+      "icon": "showers"
+    },
+    "10": {
+      "description": "Heavy rain showers",
+      "icon": "rain"
+    },
+    "11": {
+      "description": "Thunderstorm",
+      "icon": "thunderstorm"
+    },
+    "12": {
+      "description": "Light sleet showers",
+      "icon": "sleet"
+    },
+    "13": {
+      "description": "Moderate sleet showers",
+      "icon": "sleet"
+    },
+    "14": {
+      "description": "Heavy sleet showers",
+      "icon": "sleet"
+    },
+    "15": {
+      "description": "Light snow showers",
+      "icon": "snow"
+    },
+    "16": {
+      "description": "Moderate snow showers",
+      "icon": "snow"
+    },
+    "17": {
+      "description": "Heavy snow showers",
+      "icon": "snow"
+    },
+    "18": {
+      "description": "Light rain",
+      "icon": "rain"
+    },
+    "19": {
+      "description": "Moderate rain",
+      "icon": "rain"
+    },
+    "20": {
+      "description": "Heavy rain",
+      "icon": "rain-wind"
+    },
+    "21": {
+      "description": "Thunder",
+      "icon": "thunderstorm"
+    },
+    "22": {
+      "description": "Light sleet",
+      "icon": "sleet"
+    },
+    "23": {
+      "description": "Moderate sleet",
+      "icon": "sleet"
+    },
+    "24": {
+      "description": "Heavy sleet",
+      "icon": "sleet"
+    },
+    "25": {
+      "description": "Light snowfall",
+      "icon": "snow"
+    },
+    "26": {
+      "description": "Moderate snowfall",
+      "icon": "snow"
+    },
+    "27": {
+      "description": "Heavy snowfall",
+      "icon": "snow"
+    }
+  }
+}

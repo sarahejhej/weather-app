@@ -6,70 +6,35 @@ import SearchBar from '../../components/SearchBar';
 import CurrentWeatherCard from '../../components/CurrentWeatherCard/CurrentWeatherCard';
 
 const WeatherDetailsPage = () => {
-  const [weatherForecast, setWeatherForecast] = useState(null);
   const [coordinates, setCoordinates] = useState({
     latitude: 55.433993,
     longitude: 13.819552,
   });
-  const [location, setLocation] = useState(null);
 
-  const forecastApi = `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${coordinates.longitude}/lat/${coordinates.latitude}/data.json`;
-  const locationApi = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${coordinates.latitude}&longitude=${coordinates.longitude}&localityLanguage=sv`;
-  const getWeatherForecast = useCallback(() => {
-    fetch(forecastApi)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-      })
-      .then((data) => {
-        setWeatherForecast(data);
-      });
-  }, [forecastApi]);
-
-  const getLocation = useCallback(() => {
-    fetch(locationApi)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-      })
-      .then((data) => {
-        setLocation();
-      });
-  }, [locationApi]);
-
-  useEffect(() => {
-    if (coordinates) {
-      getWeatherForecast();
-      getLocation();
-    }
+  const handleFetchWeather = useCallback((coordinates) => {
+    setCoordinates(coordinates);
   }, []);
 
-  const handleInputChange = (val) => {
-    const { name, value } = val.target;
-    setCoordinates((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
+  useEffect(() => {
+    handleFetchWeather(coordinates);
+  }, [coordinates, handleFetchWeather]);
 
-  const getWeatherForecastForDay = useCallback(() => {
-    const dates = weatherForecast?.timeSeries
-      .map(({ validTime }) => validTime.substr(0, 10))
-      .filter((v, i, a) => a.indexOf(v) === i);
-    const newArray = dates?.map((date) =>
-      weatherForecast?.timeSeries.filter(({ validTime }) =>
-        validTime.includes(date)
-      )
-    );
-    return newArray;
-  }, [weatherForecast]);
+  // const getWeatherForecastForDay = useCallback(() => {
+  //   const dates = weatherForecast?.timeSeries
+  //     .map(({ validTime }) => validTime.substr(0, 10))
+  //     .filter((v, i, a) => a.indexOf(v) === i);
+  //   const newArray = dates?.map((date) =>
+  //     weatherForecast?.timeSeries.filter(({ validTime }) =>
+  //       validTime.includes(date)
+  //     )
+  //   );
+  //   return newArray;
+  // }, [weatherForecast]);
 
-  const weatherForecastPerDay = getWeatherForecastForDay();
-  const weatherAtNoon = weatherForecast?.timeSeries.filter(({ validTime }) =>
-    validTime.includes('T12:00:00Z')
-  );
+  // const weatherAtNoon = weatherForecast?.timeSeries.filter(({ validTime }) =>
+  //   validTime.includes('T12:00:00Z')
+  // );
+
   const paperStyle = {
     padding: '2rem',
     width: {
@@ -97,12 +62,8 @@ const WeatherDetailsPage = () => {
       align-items='center'
     >
       <Paper elevation={10} style={paperStyle}>
-        <SearchBar
-          onInputChange={handleInputChange}
-          coordinates={coordinates}
-          onGetWeatherForecast={getWeatherForecast}
-        />
-        <CurrentWeatherCard />
+        <SearchBar onFetchWeather={handleFetchWeather} />
+        <CurrentWeatherCard coordinates={coordinates} />
       </Paper>
     </Container>
   );

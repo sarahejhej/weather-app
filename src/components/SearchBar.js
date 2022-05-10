@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-const SearchBar = ({ coordinates, onInputChange, onGetWeatherForecast }) => {
+const SearchBar = ({ onFetchWeather }) => {
+  const [coordinates, setCoordinates] = useState();
+
+  const handleInputChange = (val) => {
+    const { name, value } = val.target;
+    setCoordinates((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
   return (
     <Box
       component='form'
@@ -19,27 +29,27 @@ const SearchBar = ({ coordinates, onInputChange, onGetWeatherForecast }) => {
       <TextField
         id='longitude'
         name='longitude'
-        label='Longitud'
+        label='Longitude'
         type='search'
         required
-        onChange={onInputChange}
-        value={coordinates.longitude}
+        onChange={handleInputChange}
+        value={coordinates?.longitude || ''}
       />
       <TextField
         id='latitude'
         name='latitude'
-        label='Latitud'
+        label='Latitude'
         type='search'
         required
-        onChange={onInputChange}
-        value={coordinates.latitude}
+        onChange={handleInputChange}
+        value={coordinates?.latitude || ''}
       />
       <Button
         color='secondary'
         variant='contained'
-        onClick={onGetWeatherForecast}
+        onClick={() => onFetchWeather(coordinates)}
       >
-        Hämta väder
+        Fetch Weather
       </Button>
     </Box>
   );
