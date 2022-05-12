@@ -10,7 +10,7 @@ const SearchBar = ({ onFetchWeather }) => {
     const { name, value } = val.target;
     setCoordinates((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: value.trim(),
     }));
   };
 
@@ -20,8 +20,9 @@ const SearchBar = ({ onFetchWeather }) => {
       sx={{
         '& > :not(style)': { m: 1, width: '25ch' },
         display: 'flex',
+        flexWrap: 'wrap',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
       }}
       noValidate
       autoComplete='off'
@@ -34,6 +35,7 @@ const SearchBar = ({ onFetchWeather }) => {
         required
         onChange={handleInputChange}
         value={coordinates?.longitude || ''}
+        placeholder='Enter longitude'
       />
       <TextField
         id='latitude'
@@ -43,6 +45,7 @@ const SearchBar = ({ onFetchWeather }) => {
         required
         onChange={handleInputChange}
         value={coordinates?.latitude || ''}
+        placeholder='Enter latitude'
       />
       <Button
         color='secondary'

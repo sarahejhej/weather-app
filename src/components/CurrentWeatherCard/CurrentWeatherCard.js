@@ -32,10 +32,7 @@ const CurrentWeatherCard = ({ coordinates }) => {
           {location && `${location.locality}, ${location.countryCode}`}
         </Typography>
         <Typography variant='subtitle1' component='h2'>
-          {todaysWeather &&
-            `${dayjs(new Date()).format('dddd, D MMM, HH:mm')}, ${
-              todaysWeather[0].description
-            }`}
+          {todaysWeather && dayjs(new Date()).format('dddd, D MMM, HH:mm')}
         </Typography>
       </Box>
       <Box

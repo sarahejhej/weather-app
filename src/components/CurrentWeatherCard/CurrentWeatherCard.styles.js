@@ -5,6 +5,7 @@ export const CurrentWeatherContainer = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-bottom: 3rem;
 `;
 
 export const WeatherIcon = styled('i')((props) => ({
