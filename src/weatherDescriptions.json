@@ -10,7 +10,7 @@
     },
     "3": {
       "description": "Variable cloudiness",
-      "icon": "unny overcast"
+      "icon": "sunny-overcast"
     },
     "4": {
       "description": "Halfclear sky",
@@ -112,27 +112,27 @@
   "night": {
     "1": {
       "description": "Clear sky",
-      "icon": "sunny"
+      "icon": "clear"
     },
     "2": {
       "description": "Nearly clear sky",
-      "icon": "sunny-overcast"
+      "icon": "alt-partly-cloudy"
     },
     "3": {
       "description": "Variable cloudiness",
-      "icon": "unny overcast"
+      "icon": "alt-cloudy"
     },
     "4": {
       "description": "Halfclear sky",
-      "icon": "cloudy"
+      "icon": "alt-cloudy"
     },
     "5": {
       "description": "Cloudy sky",
-      "icon": "cloudy-gusts"
+      "icon": "alt-cloudy-gusts"
     },
     "6": {
       "description": "Overcast",
-      "icon": "cloudy-gusts"
+      "icon": "alt-cloudy-gusts"
     },
     "7": {
       "description": "Fog",
@@ -140,83 +140,83 @@
     },
     "8": {
       "description": "Light rain showers",
-      "icon": "showers"
+      "icon": "alt-showers"
     },
     "9": {
       "description": "Moderate rain showers",
-      "icon": "showers"
+      "icon": "alt-showers"
     },
     "10": {
       "description": "Heavy rain showers",
-      "icon": "rain"
+      "icon": "alt-rain"
     },
     "11": {
       "description": "Thunderstorm",
-      "icon": "thunderstorm"
+      "icon": "alt-thunderstorm"
     },
     "12": {
       "description": "Light sleet showers",
-      "icon": "sleet"
+      "icon": "alt-sleet"
     },
     "13": {
       "description": "Moderate sleet showers",
-      "icon": "sleet"
+      "icon": "alt-sleet"
     },
     "14": {
       "description": "Heavy sleet showers",
-      "icon": "sleet"
+      "icon": "alt-sleet"
     },
     "15": {
       "description": "Light snow showers",
-      "icon": "snow"
+      "icon": "alt-snow"
     },
     "16": {
       "description": "Moderate snow showers",
-      "icon": "snow"
+      "icon": "alt-snow"
     },
     "17": {
       "description": "Heavy snow showers",
-      "icon": "snow"
+      "icon": "alt-snow"
     },
     "18": {
       "description": "Light rain",
-      "icon": "rain"
+      "icon": "alt-rain"
     },
     "19": {
       "description": "Moderate rain",
-      "icon": "rain"
+      "icon": "alt-rain"
     },
     "20": {
       "description": "Heavy rain",
-      "icon": "rain-wind"
+      "icon": "alt-rain-wind"
     },
     "21": {
       "description": "Thunder",
-      "icon": "thunderstorm"
+      "icon": "alt-thunderstorm"
     },
     "22": {
       "description": "Light sleet",
-      "icon": "sleet"
+      "icon": "alt-sleet"
     },
     "23": {
       "description": "Moderate sleet",
-      "icon": "sleet"
+      "icon": "alt-sleet"
     },
     "24": {
       "description": "Heavy sleet",
-      "icon": "sleet"
+      "icon": "alt-sleet"
     },
     "25": {
       "description": "Light snowfall",
-      "icon": "snow"
+      "icon": "alt-snow"
     },
     "26": {
       "description": "Moderate snowfall",
-      "icon": "snow"
+      "icon": "alt-snow"
     },
     "27": {
       "description": "Heavy snowfall",
-      "icon": "snow"
+      "icon": "alt-snow"
     }
   }
 }

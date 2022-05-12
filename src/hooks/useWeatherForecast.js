@@ -4,15 +4,15 @@ import dayjs from 'dayjs';
 import * as weatherDescriptions from '../weatherDescriptions.json';
 const iconPrefix = `wi wi-`;
 
-// const getWeatherForecastForDay = (data) => {
-//   const dates = data?.timeSeries
-//     .map(({ validTime }) => validTime.substr(0, 10))
-//     .filter((v, i, a) => a.indexOf(v) === i);
-//   const newArray = dates?.map((date) =>
-//     data?.timeSeries.filter(({ validTime }) => validTime.includes(date))
-//   );
-//   return newArray;
-// };
+const getWeatherForecastPerDay = (data) => {
+  const dates = data
+    ?.map(({ date }) => date.substr(0, 10))
+    .filter((v, i, a) => a.indexOf(v) === i);
+  const newArray = dates?.map((d) =>
+    data?.filter(({ date }) => date.includes(d))
+  );
+  return newArray;
+};
 
 const getTodaysWeather = (weatherData) => {
   const currentDate = weatherData?.referenceTime?.substr(0, 10);
@@ -28,13 +28,13 @@ const convertResponse = (data) => {
     const hour = parseInt(dayjs(validTime).format().substring(11, 13));
     const isDay = hour >= 7 && hour <= 20;
     return {
-      temperature: parameters[10].values[0],
+      temperature: parameters.find( ({ name }) => name === 't').values[0],
       date: dayjs(validTime).format(),
       weatherIcon:
         iconPrefix +
         (isDay ? 'day-' : 'night-') +
         weatherDescriptions.default[isDay ? 'day' : 'night'][
-          parameters[18].values[0]
+          parameters.find(({ name}) => name === 'Wsymb2').values[0]
         ].icon,
       description:
         weatherDescriptions.default['day'][parameters[18].values[0]]
@@ -51,11 +51,17 @@ export const useWeatherForecast = (type, coordinates) => {
 
   if (type === 'todaysWeather') {
     return {
-      todaysWeather: data?.timeSeries
-        ? convertResponse(getTodaysWeather(data))
-        : null,
+      todaysWeather: data ? convertResponse(getTodaysWeather(data)) : null,
       isLoadingWeather: !data && !error,
       isWeatherError: error,
+    };
+  } else {
+    return {
+      forecast: data?.timeSeries
+        ? getWeatherForecastPerDay(convertResponse(data.timeSeries))
+        : null,
+      isLoadingForecast: !data && !error,
+      isForecastError: error,
     };
   }
 };

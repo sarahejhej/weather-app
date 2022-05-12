@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Container from '@mui/material/Container';
-import Paper from '@mui/material/Paper';
 
 import SearchBar from '../../components/SearchBar';
 import CurrentWeatherCard from '../../components/CurrentWeatherCard/CurrentWeatherCard';
+import ForecastWeatherCard from '../../components/ForecastWeatherCard/ForecastWeatherCard';
 
 const WeatherDetailsPage = () => {
   const [coordinates, setCoordinates] = useState({
@@ -19,52 +19,16 @@ const WeatherDetailsPage = () => {
     handleFetchWeather(coordinates);
   }, [coordinates, handleFetchWeather]);
 
-  // const getWeatherForecastForDay = useCallback(() => {
-  //   const dates = weatherForecast?.timeSeries
-  //     .map(({ validTime }) => validTime.substr(0, 10))
-  //     .filter((v, i, a) => a.indexOf(v) === i);
-  //   const newArray = dates?.map((date) =>
-  //     weatherForecast?.timeSeries.filter(({ validTime }) =>
-  //       validTime.includes(date)
-  //     )
-  //   );
-  //   return newArray;
-  // }, [weatherForecast]);
-
-  // const weatherAtNoon = weatherForecast?.timeSeries.filter(({ validTime }) =>
-  //   validTime.includes('T12:00:00Z')
-  // );
-
-  const paperStyle = {
-    padding: '2rem',
-    width: {
-      xs: '100vw', // theme.breakpoints.up('xs')
-      sm: '100vw', // theme.breakpoints.up('sm')
-      md: '100vw', // theme.breakpoints.up('md')
-      lg: '50vw', // theme.breakpoints.up('lg')
-      xl: '50vw', // theme.breakpoints.up('xl')
-    },
-    height: {
-      xs: '100vh', // theme.breakpoints.up('xs')
-      sm: '100vh', // theme.breakpoints.up('sm')
-      md: '100vh', // theme.breakpoints.up('md')
-      lg: '70vh', // theme.breakpoints.up('lg')
-      xl: '70vh', // theme.breakpoints.up('xl')
-    },
-    margin: '2rem auto',
-  };
-
   return (
     <Container
-      maxWidth='lg'
       display='flex'
       justify-content='center'
       align-items='center'
+      sx={{ maxWidth: '60rem'}}
     >
-      <Paper elevation={10} style={paperStyle}>
-        <SearchBar onFetchWeather={handleFetchWeather} />
-        <CurrentWeatherCard coordinates={coordinates} />
-      </Paper>
+      <SearchBar onFetchWeather={handleFetchWeather} />
+      <CurrentWeatherCard coordinates={coordinates} />
+      <ForecastWeatherCard coordinates={coordinates} />
     </Container>
   );
 };
