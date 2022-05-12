@@ -12,7 +12,7 @@ import {
 import '../../css/weather-icons.min.css';
 
 const CurrentWeatherCard = ({ coordinates }) => {
-  const { todaysWeather } = useWeatherForecast('todaysWeather', coordinates);
+  const { data: todaysWeather } = useWeatherForecast('todaysWeather', coordinates);
 
   const { location } = useLocation(coordinates);
 
