@@ -17,6 +17,7 @@ function App() {
         value={{
           refreshInterval: 3000,
           fetcher: fetcher,
+          suspense: true,
         }}
       >
         <CssBaseline />

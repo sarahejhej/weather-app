@@ -17,7 +17,6 @@ export const useLocation = (coordinates) => {
 
   return {
     location: data ? convertResponse(data) : null,
-    loading: !data && !error,
     error: error,
   };
 };

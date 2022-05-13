@@ -53,7 +53,6 @@ export const useWeatherForecast = (type, coordinates) => {
     data: type === 'todaysWeather'
     ? data ? convertResponse(getTodaysWeather(data)) : null
     : data?.timeSeries ? getWeatherForecastPerDay(convertResponse(data.timeSeries)): null,
-    loading: !data && !error,
     error, 
   }
 };

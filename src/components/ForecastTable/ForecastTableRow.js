@@ -32,6 +32,7 @@ const ForecastTableRow = ({ forecastPerDay }) => {
           {Math.round( displayWeather.temperature )}&deg;C
         </ForecastTableCell>
       </TableRow>
+      {/* Collapsible table showing weather forecast for all day */}
       <TableRow style={{ backgroundColor: 'rgba(0, 0, 0, 0.02)' }}>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
