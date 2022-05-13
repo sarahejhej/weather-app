@@ -1,13 +1,13 @@
 import React from 'react'
-
 import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
+
+import { LoaderBox } from './Loader.styles'
 
 const Loader = () => {
  return(
-  <Box sx={{ display: 'flex' }}>
+  <LoaderBox>
     <CircularProgress />
-  </Box>
+  </LoaderBox>
  )
 };
 
