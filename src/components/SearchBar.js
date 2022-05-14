@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
 const SearchBar = ({ onFetchWeather }) => {
   const [coordinates, setCoordinates] = useState();
+  const [error, setError] = useState(false);
 
   const handleInputChange = (val) => {
     const { name, value } = val.target;
@@ -13,6 +14,27 @@ const SearchBar = ({ onFetchWeather }) => {
       [name]: value.trim(),
     }));
   };
+
+  const handleFetchWeather = useCallback(
+    (coordinates) => {
+      if (!coordinates.latitude) {
+        setError((prevState) => ({
+          ...prevState,
+          latitude: true,
+        }));
+      }
+      if (!coordinates.longitude) {
+        setError((prevState) => ({
+          ...prevState,
+          longitude: true,
+        }));
+      }
+      if (!error) {
+        onFetchWeather(coordinates);
+      }
+    },
+    [error, onFetchWeather]
+  );
 
   return (
     <Box
@@ -36,6 +58,8 @@ const SearchBar = ({ onFetchWeather }) => {
         onChange={handleInputChange}
         value={coordinates?.longitude || ''}
         placeholder='Enter longitude'
+        error={error.longitude}
+        helperText='*Required'
       />
       <TextField
         id='latitude'
@@ -46,11 +70,14 @@ const SearchBar = ({ onFetchWeather }) => {
         onChange={handleInputChange}
         value={coordinates?.latitude || ''}
         placeholder='Enter latitude'
+        error={error.latitude}
+        helperText='*Required'
       />
       <Button
         color='secondary'
         variant='contained'
-        onClick={() => onFetchWeather(coordinates)}
+        onClick={() => handleFetchWeather(coordinates)}
+        disabled={!coordinates?.longitude || !coordinates?.latitude}
       >
         Fetch Weather
       </Button>

@@ -28,13 +28,13 @@ const convertResponse = (data) => {
     const hour = parseInt(dayjs(validTime).format().substring(11, 13));
     const isDay = hour >= 7 && hour <= 20;
     return {
-      temperature: parameters.find( ({ name }) => name === 't').values[0],
+      temperature: parameters.find(({ name }) => name === 't').values[0],
       date: dayjs(validTime).format(),
       weatherIcon:
         iconPrefix +
         (isDay ? 'day-' : 'night-') +
         weatherDescriptions.default[isDay ? 'day' : 'night'][
-          parameters.find(({ name}) => name === 'Wsymb2').values[0]
+          parameters.find(({ name }) => name === 'Wsymb2').values[0]
         ].icon,
       description:
         weatherDescriptions.default['day'][parameters[18].values[0]]
@@ -50,9 +50,14 @@ export const useWeatherForecast = (type, coordinates) => {
   const { data, error } = useSWR(forecastApi);
 
   return {
-    data: type === 'todaysWeather'
-    ? data ? convertResponse(getTodaysWeather(data)) : null
-    : data?.timeSeries ? getWeatherForecastPerDay(convertResponse(data.timeSeries)): null,
-    error, 
-  }
+    data:
+      type === 'todaysWeather'
+        ? data
+          ? convertResponse(getTodaysWeather(data))
+          : null
+        : data?.timeSeries
+        ? getWeatherForecastPerDay(convertResponse(data.timeSeries))
+        : null,
+    error,
+  };
 };

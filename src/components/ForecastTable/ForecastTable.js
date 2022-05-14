@@ -10,7 +10,10 @@ const ForecastTable = ({ forecast }) => {
       <TableBody>
         {forecast &&
           forecast.map((forecastPerDay) => (
-            <ForecastTableRow key={Date.getTime()} forecastPerDay={forecastPerDay} />
+            <ForecastTableRow
+              key={new Date(forecastPerDay[0].date).getTime()}
+              forecastPerDay={forecastPerDay}
+            />
           ))}
       </TableBody>
     </Table>

@@ -1,14 +1,14 @@
-import React from 'react'
+import React from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 
-import { LoaderBox } from './Loader.styles'
+import { LoaderBox } from './Loader.styles';
 
 const Loader = () => {
- return(
-  <LoaderBox>
-    <CircularProgress />
-  </LoaderBox>
- )
+  return (
+    <LoaderBox>
+      <CircularProgress />
+    </LoaderBox>
+  );
 };
 
 export default Loader;

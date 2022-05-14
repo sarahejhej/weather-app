@@ -14,11 +14,13 @@ const ForecastTableRow = ({ forecastPerDay }) => {
   const [open, setOpen] = useState(false);
 
   // show weather for 14:00 local time (12:00 UTC time) if any, otherwise first in array
-  const displayWeather = forecastPerDay.find(({ date }) => date.includes('T14')) || forecastPerDay[0];
+  const displayWeather =
+    forecastPerDay.find(({ date }) => date.includes('T14')) ||
+    forecastPerDay[0];
 
   return (
     <>
-      <TableRow hover sx={{ cursor: 'pointer' }} onClick={() => setOpen(!open)} >
+      <TableRow hover sx={{ cursor: 'pointer' }} onClick={() => setOpen(!open)}>
         <ForecastTableCell size='medium' align='left'>
           {displayWeather && dayjs(displayWeather.date).format('dddd, D MMM')}
         </ForecastTableCell>
@@ -29,29 +31,32 @@ const ForecastTableRow = ({ forecastPerDay }) => {
           />
         </ForecastTableCell>
         <ForecastTableCell align='right' size='medium'>
-          {Math.round( displayWeather.temperature )}&deg;C
+          {Math.round(displayWeather.temperature)}&deg;C
         </ForecastTableCell>
       </TableRow>
       {/* Collapsible table showing weather forecast for all day */}
       <TableRow style={{ backgroundColor: 'rgba(0, 0, 0, 0.02)' }}>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
+          <Collapse in={open} timeout='auto' unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <Table size="small" aria-label="forecast">
+              <Table size='small' aria-label='forecast'>
                 <TableBody>
                   {forecastPerDay.map((forecast) => (
-                    <TableRow key={forecast.date} sx={{ '&:last-child td': { border: 0 } }}>
-                      <ForecastTableCell >
+                    <TableRow
+                      key={forecast.date}
+                      sx={{ '&:last-child td': { border: 0 } }}
+                    >
+                      <ForecastTableCell>
                         {dayjs(forecast.date).format('HH:mm')}
                       </ForecastTableCell>
-                      <ForecastTableCell align='center' >
+                      <ForecastTableCell align='center'>
                         <WeatherIcon
                           className={forecast.weatherIcon}
                           fontSize='1.8rem'
                         />
                       </ForecastTableCell>
-                      <ForecastTableCell align="right">
-                        {Math.round( forecast.temperature )}&deg;C
+                      <ForecastTableCell align='right'>
+                        {Math.round(forecast.temperature)}&deg;C
                       </ForecastTableCell>
                     </TableRow>
                   ))}
