@@ -6,7 +6,7 @@ import { LoaderBox } from './Loader.styles';
 const Loader = () => {
   return (
     <LoaderBox>
-      <CircularProgress />
+      <CircularProgress sx={{ color: 'rgb(2, 186, 253)' }} />
     </LoaderBox>
   );
 };

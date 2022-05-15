@@ -11,6 +11,7 @@ import {
   WeatherIcon,
 } from './CurrentWeatherCard.styles';
 import '../../css/weather-icons.min.css';
+import { getIconColor } from '../../utils';
 
 const CurrentWeatherCard = ({ coordinates }) => {
   const { data: todaysWeather } = useWeatherForecast(
@@ -60,6 +61,7 @@ const CurrentWeatherCard = ({ coordinates }) => {
           <WeatherIcon
             className={todaysWeather && todaysWeather[0].weatherIcon}
             fontSize='8rem'
+            color={getIconColor(todaysWeather && todaysWeather[0].temperature)}
           />
         </Box>
       </Box>

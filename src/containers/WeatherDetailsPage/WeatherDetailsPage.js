@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import Container from '@mui/material/Container';
 
-import SearchBar from '../../components/SearchBar';
+import SearchBar from '../../components/SearchBar/SearchBar';
 import CurrentWeatherCard from '../../components/CurrentWeatherCard/CurrentWeatherCard';
 import ForecastWeatherCard from '../../components/ForecastWeatherCard/ForecastWeatherCard';
 import Error from '../../components/Error/Error';
