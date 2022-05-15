@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 
 import { ErrorBox } from './Error.styles';
@@ -14,3 +15,7 @@ const Error = ({ dataError }) => {
 };
 
 export default Error;
+
+Error.propTypes = {
+  dataError: PropTypes.object,
+};

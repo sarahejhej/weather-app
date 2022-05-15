@@ -1,5 +1,6 @@
 import React from 'react';
 import dayjs from 'dayjs';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
@@ -67,3 +68,7 @@ const CurrentWeatherCard = ({ coordinates }) => {
 };
 
 export default CurrentWeatherCard;
+
+CurrentWeatherCard.propTypes = {
+  coordinates: PropTypes.object.isRequired,
+};

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
@@ -71,3 +72,7 @@ const ForecastTableRow = ({ forecastPerDay }) => {
 };
 
 export default ForecastTableRow;
+
+ForecastTableRow.propTypes = {
+  forecastPerDay: PropTypes.array.isRequired,
+};

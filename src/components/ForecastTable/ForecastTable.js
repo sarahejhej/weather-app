@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 
@@ -20,3 +21,7 @@ const ForecastTable = ({ forecast }) => {
   );
 };
 export default ForecastTable;
+
+ForecastTable.propTypes = {
+  forecast: PropTypes.array.isRequired,
+};

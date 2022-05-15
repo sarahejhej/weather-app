@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -86,3 +87,7 @@ const SearchBar = ({ onFetchWeather }) => {
 };
 
 export default SearchBar;
+
+SearchBar.propTypes = {
+  onFetchWeather: PropTypes.func.isRequired,
+};
