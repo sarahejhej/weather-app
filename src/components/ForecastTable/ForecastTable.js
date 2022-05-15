@@ -9,8 +9,11 @@ const ForecastTable = ({ forecast }) => {
     <Table aria-label='collapsible table'>
       <TableBody>
         {forecast &&
-          forecast.map((forecastPerDay, index) => (
-            <ForecastTableRow key={index} forecastPerDay={forecastPerDay} />
+          forecast.map((forecastPerDay) => (
+            <ForecastTableRow
+              key={new Date(forecastPerDay[0].date).getTime()}
+              forecastPerDay={forecastPerDay}
+            />
           ))}
       </TableBody>
     </Table>

@@ -1,7 +1,6 @@
 import useSWR from 'swr';
 
 const convertResponse = (data) => {
-  console.log('data', data);
   const mapped = {
     locality: data.locality,
     countryCode: data.countryCode,
@@ -17,8 +16,7 @@ export const useLocation = (coordinates) => {
   });
 
   return {
-    location: data ? convertResponse(data) : null,
-    isLoadingLocation: !data && !error,
-    isLocationError: error,
+    location: data ? (data.locality ? convertResponse(data) : data) : null,
+    error: error,
   };
 };
