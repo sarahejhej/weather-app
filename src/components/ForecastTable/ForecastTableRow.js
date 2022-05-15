@@ -10,6 +10,7 @@ import TableBody from '@mui/material/TableBody';
 
 import { ForecastTableCell } from './ForecastTable.styles';
 import { WeatherIcon } from '../CurrentWeatherCard/CurrentWeatherCard.styles';
+import { getIconColor } from '../../utils';
 
 const ForecastTableRow = ({ forecastPerDay }) => {
   const [open, setOpen] = useState(false);
@@ -29,6 +30,7 @@ const ForecastTableRow = ({ forecastPerDay }) => {
           <WeatherIcon
             className={displayWeather && displayWeather.weatherIcon}
             fontSize='2rem'
+            color={getIconColor(displayWeather.weatherIcon)}
           />
         </ForecastTableCell>
         <ForecastTableCell align='right' size='medium'>
@@ -54,6 +56,7 @@ const ForecastTableRow = ({ forecastPerDay }) => {
                         <WeatherIcon
                           className={forecast.weatherIcon}
                           fontSize='1.8rem'
+                          color={getIconColor(forecast.temperature)}
                         />
                       </ForecastTableCell>
                       <ForecastTableCell align='right'>

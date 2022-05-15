@@ -10,5 +10,5 @@ export const CurrentWeatherContainer = styled('section')`
 
 export const WeatherIcon = styled('i')((props) => ({
   fontSize: props.fontSize,
-  color: 'lightblue',
+  color: props.color,
 }));
