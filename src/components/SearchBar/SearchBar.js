@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+
+import { SearchButton, SearchField } from './SearchBar.styles';
 
 const SearchBar = ({ onFetchWeather }) => {
   const [coordinates, setCoordinates] = useState();
@@ -50,7 +50,7 @@ const SearchBar = ({ onFetchWeather }) => {
       noValidate
       autoComplete='off'
     >
-      <TextField
+      <SearchField
         id='longitude'
         name='longitude'
         label='Longitude'
@@ -62,7 +62,7 @@ const SearchBar = ({ onFetchWeather }) => {
         error={error.longitude}
         helperText='*Required'
       />
-      <TextField
+      <SearchField
         id='latitude'
         name='latitude'
         label='Latitude'
@@ -74,14 +74,14 @@ const SearchBar = ({ onFetchWeather }) => {
         error={error.latitude}
         helperText='*Required'
       />
-      <Button
-        color='secondary'
+      <SearchButton
+        size='large'
         variant='contained'
         onClick={() => handleFetchWeather(coordinates)}
         disabled={!coordinates?.longitude || !coordinates?.latitude}
       >
         Fetch Weather
-      </Button>
+      </SearchButton>
     </Box>
   );
 };
