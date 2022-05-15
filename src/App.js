@@ -4,6 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 import WeatherDetailsPage from './containers/WeatherDetailsPage/WeatherDetailsPage';
 import Loader from './components/Loader/Loader';
+import { ErrorBoundary } from './ErrorBoundary';
 
 const fetcher = async (url) => {
   const res = await fetch(url);
@@ -24,18 +25,20 @@ const fetcher = async (url) => {
 
 function App() {
   return (
-    <Suspense fallback={<Loader />}>
-      <SWRConfig
-        value={{
-          refreshInterval: 3000,
-          fetcher: fetcher,
-          suspense: true,
-        }}
-      >
-        <CssBaseline />
-        <WeatherDetailsPage />
-      </SWRConfig>
-    </Suspense>
+    <ErrorBoundary>
+      <Suspense fallback={<Loader />}>
+        <SWRConfig
+          value={{
+            refreshInterval: 3000,
+            fetcher: fetcher,
+            suspense: true,
+          }}
+        >
+          <CssBaseline />
+          <WeatherDetailsPage />
+        </SWRConfig>
+      </Suspense>
+    </ErrorBoundary>
   );
 }
 
