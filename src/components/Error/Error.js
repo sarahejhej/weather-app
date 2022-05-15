@@ -3,10 +3,12 @@ import Typography from '@mui/material/Typography';
 
 import { ErrorBox } from './Error.styles';
 
-const Error = () => {
+const Error = ({ dataError }) => {
   return (
     <ErrorBox>
-      <Typography variant='h1'> Oops, something went wrong!</Typography>
+      <Typography variant='h1'>
+        {dataError ? dataError.message : 'Oops, something went wrong!'}
+      </Typography>
     </ErrorBox>
   );
 };

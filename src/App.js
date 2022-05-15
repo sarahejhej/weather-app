@@ -7,6 +7,18 @@ import Loader from './components/Loader/Loader';
 
 const fetcher = async (url) => {
   const res = await fetch(url);
+  if (!res.ok) {
+    if (res.status === 404) {
+      const error = {
+        error: {
+          code: 404,
+          message: 'Not Found',
+        },
+      };
+      return error;
+    }
+    throw new Error(res.status);
+  }
   return res.json();
 };
 

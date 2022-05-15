@@ -50,14 +50,15 @@ export const useWeatherForecast = (type, coordinates) => {
   const { data, error } = useSWR(forecastApi);
 
   return {
-    data:
-      type === 'todaysWeather'
-        ? data
-          ? convertResponse(getTodaysWeather(data))
-          : null
-        : data?.timeSeries
-        ? getWeatherForecastPerDay(convertResponse(data.timeSeries))
-        : null,
+    data: !data.timeSeries
+      ? data
+      : type === 'todaysWeather'
+      ? data && data.timeSeries
+        ? convertResponse(getTodaysWeather(data))
+        : null
+      : data?.timeSeries
+      ? getWeatherForecastPerDay(convertResponse(data.timeSeries))
+      : null,
     error,
   };
 };

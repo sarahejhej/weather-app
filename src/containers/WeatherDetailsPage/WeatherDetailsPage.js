@@ -13,17 +13,17 @@ const WeatherDetailsPage = () => {
     latitude: 55.433993,
     longitude: 13.819552,
   });
-  const { error: forecastError } = useWeatherForecast(
+  const { error: forecastError, data: forecast } = useWeatherForecast(
     'todaysWeather',
     coordinates
   );
-  const { error: locationError } = useLocation(coordinates);
-
+  const { error: locationError, location } = useLocation(coordinates);
   const handleFetchWeather = useCallback((coordinates) => {
     setCoordinates(coordinates);
   }, []);
 
-  const error = forecastError || locationError;
+  const dataError = forecast.error || location.error;
+  const error = forecastError || locationError || dataError;
 
   return (
     <Container
@@ -38,9 +38,14 @@ const WeatherDetailsPage = () => {
       }}
     >
       <SearchBar onFetchWeather={handleFetchWeather} />
-      <CurrentWeatherCard coordinates={coordinates} />
-      <ForecastWeatherCard coordinates={coordinates} />
-      {error && <Error />}
+      {error ? (
+        <Error dataError={dataError || null} />
+      ) : (
+        <>
+          <CurrentWeatherCard coordinates={coordinates} />
+          <ForecastWeatherCard coordinates={coordinates} />
+        </>
+      )}
     </Container>
   );
 };

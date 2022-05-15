@@ -16,7 +16,7 @@ export const useLocation = (coordinates) => {
   });
 
   return {
-    location: data ? convertResponse(data) : null,
+    location: data ? (data.locality ? convertResponse(data) : data) : null,
     error: error,
   };
 };
