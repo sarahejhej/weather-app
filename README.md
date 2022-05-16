@@ -2,8 +2,7 @@
 
 A weather app using [SMHI Opendata API](https://opendata-download-metfcst.smhi.se/), built with React, JavaScript, and Material UI
 
-![Screen shot of weather app]()
-![Home page](https://github.com/sarahejhej/weather-app/blob/main/public/weather-app.png)
+![Weather app](https://github.com/sarahejhej/weather-app/blob/master/public/weather-app.png)
 
 ## Getting started
 
